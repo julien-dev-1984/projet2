@@ -1,11 +1,28 @@
 # Utilisation de la bibliothèque requests pour récupérer l'url de la page web
 import requests
+# Utilisation de la bibliothèque BeautifulSoup pour parser le contenu HTML de la page web
 from bs4 import BeautifulSoup
+from pprint import pprint
 
 
 url = "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html"
 response = requests.get(url)
 
+if response.status_code == 200:
+    
+# Extraction des données de la page web à l'aide de BeautifulSoup
+    soup = BeautifulSoup(response.text, "html.parser")
+    upc = soup.find("th", string="UPC").find_next_sibling("td").text
+    title = soup.find("h1").text
+    price_incl_tax = soup.find("th", string="Price (incl. tax)").find_next_sibling("td").text
+    price_excl_tax = soup.find("th", string="Price (excl. tax)").find_next_sibling("td").text
+    stock_book = soup.find("th", string="Availability").find_next_sibling("td").text.strip()
+    product_description = soup.find("div", id="product_description").find_next_sibling("p").text
+    category = soup.find("ul", class_="breadcrumb").find_all("li")[2].text.strip()
+    review_rating = soup.find("p", class_="star-rating")["class"][1]
+    image_url = soup.find("div", class_="item active").find("img")["src"]
+    image_url = image_url.replace("../../", "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html")
 
-soup = BeautifulSoup(response.text, "html.parser")
-print(soup.prettify())
+
+
+pprint({"upc": upc, "title": title, "price_incl_tax": price_incl_tax, "price_excl_tax": price_excl_tax, "stock_book": stock_book, "product_description": product_description, "category": category, "review_rating": review_rating, "image_url": image_url})
