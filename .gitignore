@@ -1,0 +1,27 @@
+# --- Environnements Virtuels ---
+# Ignore les dossiers créés par venv, virtualenv, etc.
+venv/
+.venv/
+env/
+ENV/
+
+# --- Fichiers d'Output et Documents ---
+# Bloque les fichiers CSV, PDF et images (comme demandé)
+*.csv
+*.pdf
+*.png
+*.jpg
+*.jpeg
+
+# --- Fichiers Temporaires et Système ---
+# Ignore les fichiers de sauvegarde des éditeurs (se terminant par ~)
+*~
+# Ignore les fichiers système macOS/Windows
+.DS_Store
+Thumbs.db
+
+# --- Python ---
+# Ignore les fichiers de cache Python (fichiers compilés)
+__pycache__/
+*.py[cod]
+*$py.class
