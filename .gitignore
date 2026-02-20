@@ -6,7 +6,7 @@ env/
 ENV/
 
 # --- Fichiers d'Output et Documents ---
-# Bloque les fichiers CSV, PDF et images (comme demandé)
+# Bloque les fichiers CSV, PDF et images
 *.csv
 *.pdf
 *.png
