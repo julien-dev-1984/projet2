@@ -17,8 +17,12 @@ if response.status_code == 200:
     # Affichage du contenu de la page web
     html_content = response.text
 
-    # Affichage du contenu de la page web
-    print(html_content)
-
 else:
     print(f"Erreur lors de la récupération de la page : {response.status_code}")
+
+
+
+soup = BeautifulSoup(html_content, "html.parser")
+
+titre = soup.find_all("h1")[0].text
+print(f"Le titre du livre est : {titre}")
